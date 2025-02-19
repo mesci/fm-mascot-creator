@@ -1,0 +1,537 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Dela+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+:root {
+  --brown-50: #fdf8f6;
+  --brown-100: #f2e8e5;
+  --brown-200: #eaddd7;
+  --brown-300: #e0cec7;
+  --brown-400: #d2bab0;
+  --brown-500: #a18072;
+  --brown-600: #846358;
+  --brown-700: #43302b;
+  
+  --green-50: #f3faf7;
+  --green-100: #def7ec;
+  --green-200: #bcf0da;
+  --green-300: #84e1bc;
+  --green-400: #31c48d;
+  --green-500: #0e9f6e;
+  --green-600: #057a55;
+  --green-700: #046c4e;
+
+  --primary-yellow: #FFB800;
+  --dark-brown: #2C1810;
+  --cream: #FFF8E7;
+  --shadow-brown: #8B4513;
+
+  --soft-cream: #FDF6E3; /* Sıcak, soft krem rengi */
+}
+
+body {
+  background: var(--cream);
+}
+
+.playground {
+  min-height: 100vh;
+  background: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23deb887' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+  padding: 2rem;
+  font-family: 'Lilita One', cursive;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.dot-pattern {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
+.app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.top-zone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  color: var(--dark-brown);
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 
+    2px 2px 0 #FFF,
+    4px 4px 0 var(--shadow-brown);
+}
+
+.canvas-box {
+  background: var(--soft-cream);
+  border-radius: 24px;
+  padding: 1rem;
+  box-shadow: 
+    0 0 0 4px var(--dark-brown),
+    0 8px 0 4px var(--shadow-brown);
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.canvas-box canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.fun-btn {
+  background: var(--primary-yellow);
+  border: none;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  font-family: 'Lilita One', cursive;
+  font-size: 1.2rem;
+  color: var(--dark-brown);
+  cursor: pointer;
+  box-shadow: 
+    0 0 0 4px var(--dark-brown),
+    0 8px 0 4px var(--shadow-brown);
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.fun-btn:hover {
+  transform: translateY(-2px);
+}
+
+.fun-btn:active {
+  transform: translateY(4px);
+  box-shadow: 
+    0 0 0 4px var(--dark-brown),
+    0 4px 0 4px var(--shadow-brown);
+}
+
+.item {
+  aspect-ratio: 1;
+  width: 60px;
+  background: var(--soft-cream);
+  border-radius: 16px;
+  padding: 0.5rem;
+  cursor: pointer;
+  box-shadow: 
+    0 0 0 3px var(--dark-brown),
+    0 4px 0 3px var(--shadow-brown);
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+}
+
+.item.selected {
+  background: var(--primary-yellow);
+  transform: translateY(2px);
+  box-shadow: 
+    0 0 0 3px var(--dark-brown),
+    0 2px 0 3px var(--shadow-brown);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.item.selected img {
+  transform: scale(1.1);
+}
+
+.item[data-type="background"] {
+  padding: 0;
+}
+
+.item[data-type="background"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--preview-gradient);
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.items-grid {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.category-title {
+  color: var(--dark-brown);
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  text-shadow: 1px 1px 0 #FFF;
+}
+
+.game-zone {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.customization-area {
+  position: sticky;
+  top: 2rem;
+}
+
+.preview-area {
+  background: var(--surface-light);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.canvas-container {
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+}
+
+.canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slogan-badge {
+  background: linear-gradient(135deg, var(--green-400), var(--green-500));
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 100px;
+  font-family: 'Dela Gothic One', cursive;
+  font-size: 1rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(14, 159, 110, 0.1), 
+    0 2px 4px -1px rgba(14, 159, 110, 0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slogan-badge span {
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.wardrobe-area {
+  margin-top: -1rem;
+}
+
+.wardrobe-content {
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.asset-selector {
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.asset-selector h3 {
+  font-family: 'Lilita One', sans-serif;
+  color: var(--dark-brown);
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  text-shadow: 1px 1px 0 #FFF;
+}
+
+@media (max-width: 1024px) {
+  .game-zone {
+    grid-template-columns: 1fr;
+  }
+  
+  .customization-area {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-zone {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem 0 5rem;
+}
+
+.create-badge {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 51, 102, 0.3);
+  cursor: pointer;
+}
+
+.slider-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-brown);
+  background: var(--primary-yellow);
+  padding: 0 !important;
+}
+
+.slider-btn svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.slider-btn:hover svg {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+.slider-btn:active svg {
+  transform: scale(0.9);
+} 
+
+.corner-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.corner-logo:hover {
+  opacity: 1;
+}
+
+.corner-logo .logo {
+  height: 35px;
+  width: auto;
+}
+
+.logo {
+  height: 60px;
+}
+
+@media (max-width: 1024px) {
+  .game-zone {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 0 1rem;
+  }
+
+  .customization-area {
+    position: relative;
+    top: 0;
+  }
+
+  .preview-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .canvas-box {
+    margin: 0 auto;
+  }
+
+  .wardrobe-area {
+    margin-top: 0;
+  }
+
+  .navbar {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .action-buttons {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .items-grid {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .slider-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .items-grid {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .slider-btn {
+    margin: 0.2rem 0;
+  }
+
+  .item {
+    width: 50px;
+  }
+
+  .wardrobe-content {
+    gap: 2rem;
+  }
+
+  .asset-selector {
+    padding: 0.5rem;
+  }
+
+  .asset-selector h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .playground {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    height: 45px;
+  }
+
+  .canvas-box {
+    max-width: 280px;
+    padding: 0.5rem;
+  }
+
+  .item {
+    width: 45px;
+  }
+
+  .fun-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .slider-container {
+    gap: 0.3rem;
+  }
+
+  .asset-selector {
+    padding: 0.3rem;
+  }
+
+  .wardrobe-content {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .canvas-box {
+    max-width: 240px;
+  }
+
+  .item {
+    width: 40px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 35px;
+  }
+
+  .fun-btn {
+    font-size: 0.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+}
