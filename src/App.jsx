@@ -125,6 +125,12 @@ function App() {
   }
 
   const handleRandomize = () => {
+    // Misc itemlerden belirli öğeleri filtrele
+    const filteredMiscItems = miscItems.filter(item => {
+      const excludedItems = ['misc-1.png', 'misc-4.png', 'misc-5.png'];
+      return !excludedItems.some(excluded => item.src?.includes(excluded));
+    });
+
     setMonkeyState({
       ...monkeyState,
       head: headItems[Math.floor(Math.random() * headItems.length)]?.src,
@@ -132,7 +138,7 @@ function App() {
       clothes: clothingItems[Math.floor(Math.random() * clothingItems.length)]?.src,
       hat: hatItems[Math.floor(Math.random() * hatItems.length)]?.src,
       glasses: glassesItems[Math.floor(Math.random() * glassesItems.length)]?.src,
-      misc: miscItems[Math.floor(Math.random() * miscItems.length)]?.src,
+      misc: filteredMiscItems[Math.floor(Math.random() * filteredMiscItems.length)]?.src,
       backgroundColor: backgroundItems[Math.floor(Math.random() * backgroundItems.length)]?.src,
     })
   }
